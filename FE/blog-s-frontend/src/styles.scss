@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+h1.icon {
+  font-size: 44px;
+  background: -webkit-linear-gradient(#dba3e2, rgba(26,3,38,1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+    text-transform: uppercase;
+}

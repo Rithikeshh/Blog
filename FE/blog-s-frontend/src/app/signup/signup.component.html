@@ -1,0 +1,40 @@
+<div class='login-form-container'>
+        <header class="login-signup-header">
+    <a class="login-signup-linkedin-icon-container" href="/">
+        <div>
+            <h1 class="icon">Blog</h1>
+        </div>
+    </a>
+</header>
+        <div class='signup-form-container'>
+            <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+                <div class='signup-form-input-container'>
+                    <label htmlFor="username">Full name</label>
+                    <div class="signup-text-input" [ngClass]="{ 'signup-text-input-alret' : (username.invalid && username.touched)}">
+                        <input class="capitalize" minlength="4" ngModel required type="name" id='username' name='username' #username="ngModel" />
+                    </div>
+                    <p *ngIf="username.invalid && username.touched">Name must be at least 4 characters</p>
+                    <label class="mt-4" htmlFor="email">Email</label>
+                    <div class="signup-text-input" [ngClass]="{ 'signup-text-input-alret' : (email.invalid && email.touched)}">
+                        <input required email ngModel type="email" id='email' name='email' #email="ngModel"/>
+                    </div>
+                    <p *ngIf="email.invalid && email.touched">Please enter a valid email address</p>
+                    <label class="mt-4" htmlFor="password">Password (6+ characters)</label>
+                    <div class="signup-text-input" [ngClass]="{ 'signup-text-input-alret' : (password.invalid && password.touched)}">
+                        <input minlength="6" required ngModel [type]="showPassword ? 'text':'password'" id='password' name='password' #password="ngModel"/>
+                        <button type='button' (click)="setShowPassword()">{{showPassword ? "Hide" : "Show"}}</button>  
+                    </div>
+                    <p *ngIf="!incorrectDetails && (password.invalid && password.touched)">The password you provided must have at least 6 characters</p>
+                    <p *ngIf="incorrectDetails">{{incorrectDetails}}</p>
+                </div>
+                <p class='signup-policy'>By clicking Continue, you agree to Blog’s <span>User Agreement</span>, <span>Privacy Policy</span>, and <span>Cookie Policy</span>.</p>
+                <div>
+                    <button [disabled]="myForm.invalid" [ngClass]="{'btn-disable' : myForm.invalid}" class='login-signup-btn m-0' type='submit'>Agree & Join</button>
+                </div>
+                <div class='login-form-divider'>
+                    <p>or</p>
+                </div>
+                <div class='login-to-signin'>Already on Blog? <span [routerLink]="'/login'">Sign in</span></div>
+            </form>
+        </div>
+    </div>

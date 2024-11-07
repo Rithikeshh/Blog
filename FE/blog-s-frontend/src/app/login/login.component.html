@@ -1,0 +1,42 @@
+<header class="login-signup-header">
+    <a class="login-signup-linkedin-icon-container" href="/">
+        <div>
+            <h1 class="icon">Blog</h1>
+        </div>
+    </a>
+</header>
+<div class='login-signup-form-container'>
+    <div class='login-signup-heading'>
+        <h1>Sign in</h1>
+        <p>Stay updated on your professional world</p>
+    </div>
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <div [ngClass]="{'login-signup-form-input-alert' : (email.invalid && email.touched)}" class="login-signup-form-input">
+            <input required ngModel email placeholder=''  type="email" name="email" id='email' #email="ngModel"/>
+            <label htmlFor="email">Email</label>
+            <p *ngIf="email.invalid && email.touched" class='input-helper'>Please enter a valid email address</p>
+        </div>
+        <div [ngClass]="{'login-signup-form-input-alert' : (pass.invalid && pass.touched)}" class="login-signup-form-input">
+            <input required ngModel placeholder='' minlength="6" [type]="showPassword ? 'text' : 'password'" name="password" id='password' #pass="ngModel" />
+            <label htmlFor="password">Password</label>
+            <span (click)="setShowPassword()">{{showPassword ? "Hide" : "Show"}}</span>
+            <p *ngIf="pass.invalid && pass.touched" [ngStyle]="{'margin-top': '4px'}" class='input-helper'>The password you provided must have at least 6 characters</p>
+            <!-- {serverError && <p class='input-helper'>Something went wrong please try later</p>} -->
+            <p *ngIf="incorrectDetails" class='input-helper'>{{incorrectDetails}}</p>
+        </div>
+        <a routerLink="/login" to='#'>
+            <span class='login-forget-btn'>Forgot password?</span>
+        </a>
+        <div>
+            <button [disabled]="myForm.invalid" [ngClass]="{'btn-disable' : myForm.invalid}" class='login-signup-btn' type='submit'>Sign in</button>
+        </div>
+        <div class='login-form-divider'>
+            <p>or</p>
+        </div>
+    </form>
+    <div class='google-auth-btn'>
+        <p>By clicking Continue, you agree to Blog’s <span>User Agreement</span>, <span>Privacy Policy</span>, and <span>Cookie Policy</span>.</p>
+        <button>Sign in as a GUEST</button>
+    </div>
+</div>
+<div class="login-to-signin">New to Blog? <span [routerLink]="'/signup'">Join now</span></div>
